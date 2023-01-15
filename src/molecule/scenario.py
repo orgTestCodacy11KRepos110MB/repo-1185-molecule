@@ -49,8 +49,7 @@ class Scenario(object):
 
     Any option set in this section will override the defaults.
 
-    .. code-block:: yaml
-
+    ``` yaml
         scenario:
           create_sequence:
             - dependency
@@ -87,6 +86,7 @@ class Scenario(object):
             - verify
             - cleanup
             - destroy
+    ```
 
     :Advanced testing
 
@@ -97,8 +97,7 @@ class Scenario(object):
 
     Example of test sequence with multiple side effects and tests:
 
-    .. code-block:: yaml
-
+    ``` yaml
          test_sequence:
            - converge
            - side_effect reboot.yaml
@@ -108,6 +107,7 @@ class Scenario(object):
            - verify other_test1.py other_test2.py
            - side_effect
            - verify
+    ```
 
     ``side_effect`` without an argument is executing the usual `side_effect` configured in
       `provisioner.playbooks` section of molecule.yml.
@@ -134,8 +134,7 @@ class Scenario(object):
 
     Additional `converge` and `idempotence` actions can be used multiple times:
 
-    .. code-block:: yaml
-
+    ``` yaml
          test_sequence:
            - converge
            - idempotence
@@ -150,7 +149,7 @@ class Scenario(object):
            - side_effect effect3.yml
            - verify test3/
            - idempotence
-
+    ```
     """  # noqa
 
     def __init__(self, config):
@@ -304,23 +303,20 @@ class Scenario(object):
         return ["verify"]
 
     @property
-    def sequence(self):
-        """
-        Select the sequence based on scenario and subcommand of the provided \
-        scenario object and returns a list.
-
-        :param scenario: A scenario object.
-        :param skipped: An optional bool to include skipped scenarios.
-        :return: list
-        """
-        s = scenarios.Scenarios([self.config])
-        matrix = s._get_matrix()
+    def sequence(self) -> list[str]:
+        """Select the sequence based on scenario and subcommand of the provided scenario object and returns a list."""
+        result = []
+        our_scenarios = scenarios.Scenarios([self.config])  # type: ignore
+        matrix = our_scenarios._get_matrix()  # type: ignore
 
         try:
-            return matrix[self.name][self.config.subcommand]
+            result = matrix[self.name][self.config.subcommand]
+            if not isinstance(result, list):
+                raise RuntimeError("Unexpected sequence type {result}.")
         except KeyError:
             # TODO(retr0h): May change this handling in the future.
-            return []
+            pass
+        return result
 
     def _setup(self):
         """
