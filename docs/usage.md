@@ -1,6 +1,7 @@
 # Command Line Reference
 
 ## Special commands
+
 - drivers
 - init
 - list
@@ -12,18 +13,19 @@
 
 - check
 - cleanup
+
   - This action has cleanup and is not enabled by default.
     See the provisioner's documentation for further details.
 
 - **converge** : Converge will execute the sequence necessary to converge the instances.
-- create ** driver
+- create \*\* driver
 - dependency
-- destroy ** all, parallel, driver
+- destroy \*\* all, parallel, driver
 - idempotence
-- prepare ** force
+- prepare \*\* force
 - side-effect
 - syntax
-- test - ** - Test command will execute the sequence necessary to test the instances.
+- test - \*\* - Test command will execute the sequence necessary to test the instances.
 - verify
 
 ### -s, --scenario-name
@@ -46,8 +48,8 @@
 ### molecule init role
 
 Initialize a new role using ansible-galaxy and include default
-molecule directory. Please refer to the ``init scenario``
-command in order to generate a custom ``molecule`` scenario.
+molecule directory. Please refer to the `init scenario`
+command in order to generate a custom `molecule` scenario.
 
 ### molecule init scenario
 

@@ -6,12 +6,12 @@
   group](https://github.com/ansible/community/wiki/molecule) if you
   would like to influence the direction of the project.
 - Join us in `#ansible-devtools` on
-[libera.chat](https://web.libera.chat/?channel=#ansible-molecule) irc,
-or [molecule-users
-Forum](https://groups.google.com/forum/#!forum/molecule-users).
+  [libera.chat](https://web.libera.chat/?channel=#ansible-molecule) irc,
+  or [molecule-users
+  Forum](https://groups.google.com/forum/#!forum/molecule-users).
 - The full list of Ansible email lists and IRC channels can be found in
-the [communication
-page](https://docs.ansible.com/ansible/latest/community/communication.html).
+  the [communication
+  page](https://docs.ansible.com/ansible/latest/community/communication.html).
 
 ## Guidelines
 
